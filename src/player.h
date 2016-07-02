@@ -21,7 +21,7 @@ public:
     double MOVE_SPEED = 0.005;
     double ROT_SPEED = 0.005;
 
-    double position_x = 10;
+    double position_x = 2;
     double position_y = 10;
     double dir_x = -1;
     double dir_y = 0;
