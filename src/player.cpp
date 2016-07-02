@@ -42,25 +42,13 @@ void Player::update(int timeSinceLastUpdate)
     this->position_y += this->dir_y * moveSpeed;
 
     double rotSpeed = this->rotation * timeSinceLastUpdate;
-    this->rotation_matrix(&this->dir_x, &this->dir_y, rotSpeed);
-
-    this->rotation_matrix(&this->plane_x, &this->plane_y, rotSpeed);
+    VectorUtil::rotate_vector(&this->dir_x, &this->dir_y, rotSpeed);
+    VectorUtil::rotate_vector(&this->plane_x, &this->plane_y, rotSpeed);
 }
 
 void Player::draw(SDL_Surface *windowSurface)
 {
-    std::cout << "Pos: " <<this->position_x << " - " << this->position_y << std::endl;
-    std::cout << "Dir: " <<this->dir_x << " - " << this->dir_y << std::endl;
-
     SDL_RenderDrawLine(this->renderer, this->position_x, this->position_y, this->position_x + this->dir_x*40, this->position_y + this->dir_y*40);
-
-}
-
-void Player::rotation_matrix(double *x, double *y, double speed)
-{
-    double old_x = *x;
-    *x = *x * cos(speed) - *y * sin(speed);
-    *y = old_x * sin(speed) + *y * cos(speed);
 }
 
 void Player::mov_stop()

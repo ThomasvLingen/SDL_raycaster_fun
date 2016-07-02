@@ -1,11 +1,11 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <cmath>
 #include <iostream>
 
 #include "Keyboard.h"
 #include "GameObject.h"
+#include "vectorutil.h"
 
 class Player : public GameObject
 {
@@ -38,9 +38,6 @@ public:
     void rot_stop();
     void rot_right();
     void rot_left();
-
-    void rotation_matrix(double* x, double* y, double speed);
-
 };
 
 #endif // PLAYER_H
