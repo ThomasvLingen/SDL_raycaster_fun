@@ -20,11 +20,12 @@ public:
     static World2DVector world;
     Player* player;
 
-    Uint32 getColor(int id, SDL_Surface* surface);
-
     virtual void handleInput(Keyboard input)     ;
     virtual void update(int timeSinceLastUpdate) ;
     virtual void draw(SDL_Surface* windowSurface);
+
+    int get_world_tile(int x, int y);
+    Uint32 getColor(int id, SDL_Surface* surface);
 };
 
 #endif // RAYCASTERWORLD_H

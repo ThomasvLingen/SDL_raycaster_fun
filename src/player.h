@@ -7,12 +7,16 @@
 #include "GameObject.h"
 #include "vectorutil.h"
 
+class RaycasterWorld;
+
 class Player : public GameObject
 {
 public:
     Player(SDL_Renderer* renderer);
 
     SDL_Renderer* renderer;
+
+    RaycasterWorld* world;
 
     double MOVE_SPEED = 0.005;
     double ROT_SPEED = 0.005;

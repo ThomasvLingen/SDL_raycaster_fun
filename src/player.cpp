@@ -1,4 +1,5 @@
 #include "player.h"
+#include "raycasterworld.h"
 
 Player::Player(SDL_Renderer* renderer)
 {
@@ -35,8 +36,12 @@ void Player::handleInput(Keyboard input)
 void Player::update(int timeSinceLastUpdate)
 {
     double moveSpeed = this->accel * timeSinceLastUpdate;
-    this->position_x += this->dir_x * moveSpeed;
-    this->position_y += this->dir_y * moveSpeed;
+    double new_x = this->position_x + this->dir_x * moveSpeed;
+    double new_y = this->position_y + this->dir_y * moveSpeed;
+    if (this->world->get_world_tile((int)new_x, (int)new_y) == 0) {
+        this->position_x = new_x;
+        this->position_y = new_y;
+    }
 
     double rotSpeed = this->rotation * timeSinceLastUpdate;
     VectorUtil::rotate_vector(&this->dir_x, &this->dir_y, rotSpeed);

@@ -119,7 +119,7 @@ void RaycasterWorld::draw(SDL_Surface *windowSurface)
             draw_end = height - 1;
         }
 
-        Uint32 color = this->getColor(this->world[map_x][map_y], windowSurface);
+        Uint32 color = this->getColor(this->get_world_tile(map_x, map_y), windowSurface);
         if (side == 1) {
             Uint8 r, g, b;
             SDL_GetRGB(color, windowSurface->format, &r, &g, &b);
@@ -133,6 +133,11 @@ void RaycasterWorld::draw(SDL_Surface *windowSurface)
         SDL_SetRenderDrawColor(this->renderer, r, g, b, 0xFF);
         SDL_RenderDrawLine(this->renderer, x, draw_start, x, draw_end);
     }
+}
+
+int RaycasterWorld::get_world_tile(int x, int y)
+{
+    return this->world[x][y];
 }
 
 Uint32 RaycasterWorld::getColor(int id, SDL_Surface* surface)
