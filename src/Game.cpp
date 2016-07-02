@@ -17,22 +17,51 @@ void Game::addObject(GameObject* toAdd) {
 }
 
 bool Game::init() {
-    bool success = true;
-
+    // Init SDL
     if(SDL_Init(SDL_INIT_EVERYTHING < 0)) {
         printf("Something went wrong while initting: %s\n", SDL_GetError());
-        success = false;
-    } else {
-        window = SDL_CreateWindow("Vidya gaem", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
-                                  SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-        if(window == NULL) {
-            printf("Something went wrong while making a window! : %s\n", SDL_GetError());
-            success = false;
-        } else {
-            screenSurface = SDL_GetWindowSurface(window);
-        }
+        return false;
     }
-    return success;
+
+    // Init window
+    printf("initting window\n");
+    if (!this->init_window()) {
+        return false;
+    }
+
+    printf("initting renderer\n");
+    if (!this->init_renderer()) {
+        return false;
+    }
+
+    printf("initting done\n");
+    return true;
+}
+
+bool Game::init_window()
+{
+    window = SDL_CreateWindow("Vidya gaem", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
+                              SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    if(window != NULL) {
+        screenSurface = SDL_GetWindowSurface(window);
+        return true;
+    } else {
+        printf("Something went wrong while making a window! : %s\n", SDL_GetError());
+        return false;
+    }
+}
+
+bool Game::init_renderer()
+{
+    // Attempt to make a software renderer
+    this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_SOFTWARE);
+    if (this->renderer != NULL) {
+        printf("Warning: could not use hardware acceleration --> SDL_Renderer uses software rendering\n");
+        return true;
+    } else {
+        printf("Something went wrong while making a renderer! : %s\n", SDL_GetError());
+        return false;
+    }
 }
 
 void Game::run() {
@@ -41,8 +70,7 @@ void Game::run() {
     int frameStartTime;
     int timeSpent;
 
-    this->addObject(new Player(this->window));
-    printf("Hello\n");
+    this->addObject(new Player(this->renderer));
 
     while(running) {
         frameStartTime = SDL_GetTicks();

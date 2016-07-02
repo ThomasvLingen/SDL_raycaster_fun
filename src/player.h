@@ -10,10 +10,9 @@
 class Player : public GameObject
 {
 public:
-    Player(SDL_Window* window);
+    Player(SDL_Renderer* renderer);
 
     SDL_Renderer* renderer;
-    SDL_Window* window;
 
     double MOVE_SPEED = 0.2;
     double ROT_SPEED = 0.005;

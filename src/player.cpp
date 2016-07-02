@@ -1,11 +1,8 @@
 #include "player.h"
 
-Player::Player(SDL_Window* window)
+Player::Player(SDL_Renderer* renderer)
 {
-    this->window = window;
-    std::cout << "Creating renderer" << std::endl;
-    this->renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
-    std::cout << "Done creating renderer" << std::endl;
+    this->renderer = renderer;
 }
 
 void Player::handleInput(Keyboard input)

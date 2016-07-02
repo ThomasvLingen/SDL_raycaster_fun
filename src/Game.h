@@ -15,6 +15,7 @@ class Game {
 
     SDL_Window* window = NULL;
     SDL_Surface* screenSurface = NULL;
+    SDL_Renderer* renderer = NULL;
     Keyboard keyboard;
 
     bool running = true;
@@ -27,6 +28,8 @@ class Game {
     void addObject(GameObject* toAdd);
 
     bool init();
+    bool init_renderer();
+    bool init_window();
     void run();
     void handleInput(SDL_Event* event);
     void update(int timeSinceLastUpdate);
