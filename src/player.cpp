@@ -45,10 +45,10 @@ void Player::update(int timeSinceLastUpdate)
 
 void Player::draw(SDL_Surface *windowSurface)
 {
-    SDL_RenderDrawLine(this->renderer, this->position_x, this->position_y, this->position_x + this->dir_x*40, this->position_y + this->dir_y*40);
-    SDL_RenderDrawLine(this->renderer,
-                       this->position_x + this->dir_x*40 - this->plane_x*40, this->position_y + this->dir_y*40 - this->plane_y*40,
-                       this->position_x + this->dir_x*40 + this->plane_x*40, this->position_y + this->dir_y*40 + this->plane_y*40);
+//    SDL_RenderDrawLine(this->renderer, this->position_x, this->position_y, this->position_x + this->dir_x*40, this->position_y + this->dir_y*40);
+//    SDL_RenderDrawLine(this->renderer,
+//                       this->position_x + this->dir_x*40 - this->plane_x*40, this->position_y + this->dir_y*40 - this->plane_y*40,
+//                       this->position_x + this->dir_x*40 + this->plane_x*40, this->position_y + this->dir_y*40 + this->plane_y*40);
 }
 
 void Player::mov_stop()
@@ -73,10 +73,10 @@ void Player::rot_stop()
 
 void Player::rot_right()
 {
-    this->rotation = this->ROT_SPEED;
+    this->rotation = -this->ROT_SPEED;
 }
 
 void Player::rot_left()
 {
-    this->rotation = -this->ROT_SPEED;
+    this->rotation = this->ROT_SPEED;
 }

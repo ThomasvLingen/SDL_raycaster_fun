@@ -70,7 +70,10 @@ void Game::run() {
     int frameStartTime;
     int timeSpent;
 
-    this->addObject(new Player(this->renderer));
+    Player* player = new Player(this->renderer);
+
+    this->addObject(player);
+    this->addObject(new RaycasterWorld(this->renderer, player));
 
     while(running) {
         frameStartTime = SDL_GetTicks();
@@ -126,7 +129,7 @@ void Game::update(int timeSinceLastUpdate) {
 
 void Game::draw() {
     // Draw background
-    SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF));
+    SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0x00, 0x00, 0x00));
 
     // Have all GameObjects draw themselves
     for(GameObject* obj : this->objects) {

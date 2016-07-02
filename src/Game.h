@@ -6,6 +6,7 @@
 #include "Keyboard.h"
 #include "GameObject.h"
 #include "player.h"
+#include "raycasterworld.h"
 
 using std::vector;
 

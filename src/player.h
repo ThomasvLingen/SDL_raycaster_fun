@@ -14,7 +14,7 @@ public:
 
     SDL_Renderer* renderer;
 
-    double MOVE_SPEED = 0.2;
+    double MOVE_SPEED = 0.005;
     double ROT_SPEED = 0.005;
 
     double position_x = 10;
