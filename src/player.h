@@ -19,7 +19,7 @@ public:
     RaycasterWorld* world;
 
     double MOVE_SPEED = 0.005;
-    double ROT_SPEED = 0.005;
+    double ROT_SPEED = 0.001;
 
     double position_x = 2;
     double position_y = 10;
@@ -34,6 +34,8 @@ public:
     virtual void handleInput(Keyboard input);
     virtual void update(int timeSinceLastUpdate);
     virtual void draw(SDL_Surface* windowSurface);
+
+    bool is_at(int x, int y);
 
     void mov_stop();
     void mov_forward();

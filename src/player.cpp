@@ -59,6 +59,11 @@ void Player::draw(SDL_Surface *windowSurface)
 //                       this->position_x + this->dir_x*40 + this->plane_x*40, this->position_y + this->dir_y*40 + this->plane_y*40);
 }
 
+bool Player::is_at(int x, int y)
+{
+    return (int)this->position_x == x && (int)this->position_y == y;
+}
+
 void Player::mov_stop()
 {
     this->accel = 0;

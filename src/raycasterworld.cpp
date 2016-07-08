@@ -1,17 +1,18 @@
 #include "raycasterworld.h"
+#include "alterworldevent.h"
 
 World2DVector RaycasterWorld::world = {
-    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-    {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,3,0,2,0,3,0,0,0,1},
-    {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1,0,0,0,0,0,1},
+    {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,0,2,0,1},
+    {1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,3,0,2,0,3,0,0,0,1,1,1,1,1,1,1},
+    {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
+    {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -31,6 +32,31 @@ RaycasterWorld::RaycasterWorld(SDL_Renderer *renderer, Player* player)
 {
     this->renderer = renderer;
     this->player = player;
+
+    this->add_alter_world_event(
+        new AlterWorldEvent(
+            [](RaycasterWorld* world) -> bool {
+                return world->player->is_at(9,28);
+            },
+            6, 27,
+            {
+                {1, 1, 1}
+            }
+        )
+    );
+
+
+    this->add_alter_world_event(
+        new AlterWorldEvent(
+            [](RaycasterWorld* world) -> bool {
+                return world->player->is_at(5,28);
+            },
+            6, 27,
+            {
+                {1, 0, 1}
+            }
+        )
+    );
 }
 
 void RaycasterWorld::handleInput(Keyboard input)
@@ -39,6 +65,17 @@ void RaycasterWorld::handleInput(Keyboard input)
 
 void RaycasterWorld::update(int timeSinceLastUpdate)
 {
+    this->update_alter_events();
+}
+
+void RaycasterWorld::update_alter_events()
+{
+    for (AlterWorldEvents::iterator it = this->alter_events.begin(); it != this->alter_events.end(); it++) {
+        if ((*it)->conditional(this)) {
+            (*it)->make_call(this);
+            this->alter_events.erase(it--);
+        }
+    }
 }
 
 void RaycasterWorld::draw(SDL_Surface *windowSurface)
@@ -138,6 +175,32 @@ void RaycasterWorld::draw(SDL_Surface *windowSurface)
 int RaycasterWorld::get_world_tile(int x, int y)
 {
     return this->world[x][y];
+}
+
+void RaycasterWorld::alter_world(int x, int y, int width, int height, World2DVector new_part)
+{
+    int new_part_x = 0;
+    for (int x_to_alter = x; x_to_alter < x + width; x_to_alter++) {
+        int new_part_y = 0;
+        for (int y_to_alter = y; y_to_alter < y + height; y_to_alter++) {
+            if (this->world.size() > x_to_alter && this->world[x_to_alter].size() > y_to_alter) {
+                if (new_part[new_part_x][new_part_y] != -1) {
+                    this->world[x_to_alter][y_to_alter] = new_part[new_part_x][new_part_y];
+                }
+            } else {
+                printf("Cannot do alter --> doesn't fit in world\n");
+            }
+
+            new_part_y++;
+        }
+
+        new_part_x++;
+    }
+}
+
+void RaycasterWorld::add_alter_world_event(AlterWorldEvent *to_add)
+{
+    this->alter_events.push_back(to_add);
 }
 
 Uint32 RaycasterWorld::getColor(int id, SDL_Surface* surface)
