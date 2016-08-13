@@ -1,5 +1,6 @@
 #include "raycasterworld.h"
 #include "alterworldevent.h"
+#include "sdl2util.h"
 
 World2DVector RaycasterWorld::world = {
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -158,12 +159,7 @@ void RaycasterWorld::draw(SDL_Surface *windowSurface)
 
         Uint32 color = this->getColor(this->get_world_tile(map_x, map_y), windowSurface);
         if (side == 1) {
-            Uint8 r, g, b;
-            SDL_GetRGB(color, windowSurface->format, &r, &g, &b);
-            r = r / 2;
-            g = g / 2;
-            b = b / 2;
-            color = SDL_MapRGB(windowSurface->format, r, g, b);
+            color = SDL2Util::reduce_color(windowSurface, color);
         }
         Uint8 r, g, b;
         SDL_GetRGB(color, windowSurface->format, &r, &g, &b);
