@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <SDL_ttf.h>
 
 #include <stdio.h>
 #include <vector>
@@ -7,6 +8,7 @@
 #include "GameObject.h"
 #include "player.h"
 #include "raycasterworld.h"
+#include "FPSCounter.h"
 
 using std::vector;
 
@@ -25,6 +27,7 @@ class Game {
     Game();
     ~Game();
 
+    GameObject* fps;
     vector<GameObject*> objects;
     void addObject(GameObject* toAdd);
 

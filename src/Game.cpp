@@ -23,6 +23,11 @@ bool Game::init() {
         return false;
     }
 
+    // Init SDL_TTF
+    if (TTF_Init() < 0) {
+        printf("Something went wrong while initting SDL_TTF!%s\n", TTF_GetError());
+    };
+
     // Init window
     printf("initting window\n");
     if (!this->init_window()) {
@@ -74,6 +79,7 @@ void Game::run() {
 
     this->addObject(player);
     this->addObject(new RaycasterWorld(this->renderer, player));
+    this->fps = new FPSCounter(this->renderer);
 
     while(running) {
         frameStartTime = SDL_GetTicks();
@@ -120,11 +126,13 @@ void Game::update(int timeSinceLastUpdate) {
     for(GameObject* obj : this->objects) {
         (*obj).handleInput(this->keyboard);
     }
+    this->fps->handleInput(this->keyboard);
 
     // Have all GameObjects update
     for(GameObject* obj : this->objects) {
         (*obj).update(timeSinceLastUpdate);
     }
+    this->fps->update(timeSinceLastUpdate);
 }
 
 void Game::draw() {
@@ -135,6 +143,8 @@ void Game::draw() {
     for(GameObject* obj : this->objects) {
         (*obj).draw(screenSurface);
     }
+
+    this->fps->draw(screenSurface);
 
     // Update window surface
     SDL_UpdateWindowSurface(window);
