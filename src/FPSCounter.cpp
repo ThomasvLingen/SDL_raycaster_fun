@@ -38,7 +38,7 @@ void FPSCounter::draw(SDL_Surface *windowSurface) {
     SDL_Surface* text_surface = TTF_RenderText_Solid(this->render_font, fps_text.c_str(), this->render_color);
     SDL_Texture* text_texture = SDL_CreateTextureFromSurface(this->renderer, text_surface);
     SDL_Rect text_rect;
-    text_rect.x = 5;
+    text_rect.x = 7; // Jelmer is autistic
     text_rect.y = -1;
     text_rect.w = text_surface->w;
     text_rect.h = text_surface->h;

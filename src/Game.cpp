@@ -90,8 +90,11 @@ void Game::run() {
 
         draw();
 
-        timeSpent = frameStartTime - SDL_GetTicks();
-        SDL_Delay((1000 / 60) - timeSpent);
+        // Ensure we get a nice 60 FPS
+        timeSpent = SDL_GetTicks() - frameStartTime;
+        if ((1000 / 60) > timeSpent) {
+            SDL_Delay((1000 / 60) - timeSpent);
+        }
     }
 }
 
