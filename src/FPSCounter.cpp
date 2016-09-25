@@ -21,7 +21,12 @@ void FPSCounter::handleInput(Keyboard input) {
 }
 
 void FPSCounter::update(int timeSinceLastUpdate) {
-    this->fps = 1000 / (float)timeSinceLastUpdate;
+    if (this->ticks_since_last_update > 500) {
+        this->fps = 1000 / (float)timeSinceLastUpdate;
+        this->ticks_since_last_update = 0;
+    }
+
+    this->ticks_since_last_update += timeSinceLastUpdate;
 }
 
 std::string FPSCounter::get_fps_text()

@@ -16,6 +16,7 @@ class FPSCounter : public GameObject{
 public:
     bool is_active = true;
     float fps = -1;
+    int ticks_since_last_update;
 
     SDL_Renderer* renderer;
     TTF_Font* render_font;
