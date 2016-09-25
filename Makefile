@@ -10,7 +10,7 @@ COMPILER_FLAGS = -w -std=c++11
 
 # LINKER_FLAGS
 # -lsSDL2 for SDL2
-LINKER_FLAGS = -lSDL2
+LINKER_FLAGS = -lSDL2 -lSDL2_ttf
 
 # Name of the resulting file
 EXEC = build/vidya
