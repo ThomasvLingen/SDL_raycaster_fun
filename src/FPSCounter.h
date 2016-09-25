@@ -17,6 +17,7 @@ public:
     bool is_active = true;
     float fps = -1;
     int ticks_since_last_update;
+    bool last_tab = false;
 
     SDL_Renderer* renderer;
     TTF_Font* render_font;

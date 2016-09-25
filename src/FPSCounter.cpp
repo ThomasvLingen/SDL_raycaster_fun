@@ -15,9 +15,11 @@ FPSCounter::FPSCounter(SDL_Renderer* renderer) {
 }
 
 void FPSCounter::handleInput(Keyboard input) {
-    if (input.isDown(SDLK_TAB)) {
+    if (input.isDown(SDLK_TAB) && this->last_tab == false) {
         this->is_active = !this->is_active;
     }
+
+    this->last_tab = input.isDown(SDLK_TAB);
 }
 
 void FPSCounter::update(int timeSinceLastUpdate) {
@@ -39,14 +41,16 @@ std::string FPSCounter::get_fps_text()
 
 
 void FPSCounter::draw(SDL_Surface *windowSurface) {
-    std::string fps_text = this->get_fps_text();
-    SDL_Surface* text_surface = TTF_RenderText_Solid(this->render_font, fps_text.c_str(), this->render_color);
-    SDL_Texture* text_texture = SDL_CreateTextureFromSurface(this->renderer, text_surface);
-    SDL_Rect text_rect;
-    text_rect.x = 7; // Jelmer is autistic
-    text_rect.y = -1;
-    text_rect.w = text_surface->w;
-    text_rect.h = text_surface->h;
+    if (this->is_active) {
+        std::string fps_text = this->get_fps_text();
+        SDL_Surface* text_surface = TTF_RenderText_Solid(this->render_font, fps_text.c_str(), this->render_color);
+        SDL_Texture* text_texture = SDL_CreateTextureFromSurface(this->renderer, text_surface);
+        SDL_Rect text_rect;
+        text_rect.x = 7; // Jelmer is autistic
+        text_rect.y = -1;
+        text_rect.w = text_surface->w;
+        text_rect.h = text_surface->h;
 
-    SDL_RenderCopy(this->renderer, text_texture, nullptr, &text_rect);
+        SDL_RenderCopy(this->renderer, text_texture, nullptr, &text_rect);
+    }
 }
