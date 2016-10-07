@@ -7,6 +7,7 @@
 
 #include "GameObject.h"
 #include "player.h"
+#include "Color.hpp"
 
 class AlterWorldEvent;
 
@@ -33,7 +34,7 @@ public:
 
     void alter_world(int x, int y, int width, int height, World2DVector new_part);
     int get_world_tile(int x, int y);
-    Uint32 getColor(int id, SDL_Surface* surface);
+    Color getColor(int id);
 };
 
 #endif // RAYCASTERWORLD_H

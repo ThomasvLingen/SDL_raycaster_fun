@@ -1,6 +1,5 @@
 #include "raycasterworld.h"
 #include "alterworldevent.h"
-#include "sdl2util.h"
 
 World2DVector RaycasterWorld::world = {
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -157,13 +156,13 @@ void RaycasterWorld::draw(SDL_Surface *windowSurface)
             draw_end = height - 1;
         }
 
-        Uint32 color = this->getColor(this->get_world_tile(map_x, map_y), windowSurface);
+        Color color;
+        color = this->getColor(this->get_world_tile(map_x, map_y));
         if (side == 1) {
-            color = SDL2Util::reduce_color(windowSurface, color);
+            color = color.reduce();
         }
         Uint8 r, g, b;
-        SDL_GetRGB(color, windowSurface->format, &r, &g, &b);
-        SDL_SetRenderDrawColor(this->renderer, r, g, b, 0xFF);
+        set_render_color(this->renderer, color);
         SDL_RenderDrawLine(this->renderer, x, draw_start, x, draw_end);
     }
 }
@@ -199,20 +198,34 @@ void RaycasterWorld::add_alter_world_event(AlterWorldEvent *to_add)
     this->alter_events.push_back(to_add);
 }
 
-Uint32 RaycasterWorld::getColor(int id, SDL_Surface* surface)
+Color RaycasterWorld::getColor(int id)
 {
-    SDL_PixelFormat* format = surface->format;
+    Uint8 r = 0;
+    Uint8 g = 0;
+    Uint8 b = 0;
 
     switch(id) {
         case 1:
-            return SDL_MapRGB(format, 0xFF, 0x00, 0x00); break;
+            r = 0xFF;
+        break;
         case 2:
-            return SDL_MapRGB(format, 0x00, 0xFF, 0x00); break;
+            g = 0xFF;
+        break;
         case 3:
-            return SDL_MapRGB(format, 0x00, 0x00, 0xFF); break;
+            b = 0xFF;
+        break;
         case 4:
-            return SDL_MapRGB(format, 0xFF, 0xFF, 0xFF); break;
+            r = 0xFF;
+            g = 0xFF;
+            b = 0xFF;
+        break;
         default:
-            return SDL_MapRGB(format, 0xFF, 0xFF, 0x00); break;
+            r = 0xFF;
+            g = 0xFF;
+        break;
     }
+
+    Color c(r,g,b);
+
+    return c;
 }

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.3)
 project(SDL_raycaster_fun)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
@@ -23,10 +23,8 @@ set(SOURCE_FILES
     src/player.h
     src/raycasterworld.cpp
     src/raycasterworld.h
-    src/sdl2util.cpp
-    src/sdl2util.h
     src/vectorutil.cpp
-    src/vectorutil.h src/FPSCounter.cpp src/FPSCounter.h)
+    src/vectorutil.h src/FPSCounter.cpp src/FPSCounter.h src/Color.cpp src/Color.hpp)
 
 add_executable(SDL_raycaster_fun ${SOURCE_FILES})
 target_link_libraries(SDL_raycaster_fun ${SDL2_LIBRARY})
