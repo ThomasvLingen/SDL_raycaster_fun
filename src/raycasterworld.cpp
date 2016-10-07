@@ -6,25 +6,25 @@ World2DVector RaycasterWorld::world = {
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1,0,0,0,0,0,1},
-    {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,0,2,0,1},
-    {1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,3,0,2,0,3,0,0,0,1,1,1,1,1,1,1},
-    {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
-    {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1,0,0,0,0,0,1},
+    {1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,0,0,1},
+    {1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1},
+    {1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,0,1,0,0,0,1,1,1,1,1,1,1},
+    {1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
+    {1,0,0,0,0,0,1,1,0,1,1,0,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,4,0,0,0,0,4,1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,4,0,4,4,4,4,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
-    {1,4,0,0,0,4,4,0,4,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
-    {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,5,5,5,5,5,0,1},
-    {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
-    {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
-    {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,1,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,1,0,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1},
+    {1,1,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1},
+    {1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1},
+    {1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1},
+    {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1},
+    {1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
@@ -32,6 +32,8 @@ RaycasterWorld::RaycasterWorld(SDL_Renderer *renderer, Player* player)
 {
     this->renderer = renderer;
     this->player = player;
+
+    this->gen_textures();
 
     this->add_alter_world_event(
         new AlterWorldEvent(
@@ -59,6 +61,19 @@ RaycasterWorld::RaycasterWorld(SDL_Renderer *renderer, Player* player)
     );
 }
 
+void RaycasterWorld::gen_textures()
+{
+    this->textures[0].resize(TEXWIDTH * TEXHEIGHT);
+
+    for (int x = 0; x < TEXWIDTH; x++) {
+        for (int y = 0; y < TEXHEIGHT; y++) {
+            if (x != y && x != TEXWIDTH - y) {
+                this->textures[0][TEXWIDTH * y + x] = Color(0xFF, 0, 0);
+            }
+        }
+    }
+}
+
 void RaycasterWorld::handleInput(Keyboard input)
 {
 }
@@ -83,6 +98,7 @@ void RaycasterWorld::draw(SDL_Surface *windowSurface)
     int width = 640;
     int height = 480;
 
+    // Build screenbuffer
     for (int x = 0; x < width; x++)
     {
         double camera_x = 2 * x / double(width) - 1;
@@ -156,12 +172,47 @@ void RaycasterWorld::draw(SDL_Surface *windowSurface)
             draw_end = height - 1;
         }
 
-        Color color = this->getColor(this->get_world_tile(map_x, map_y));
-        if (side == 1) {
-            color = color.reduce();
+        // -1 so world map 1 maps to texture 0
+        int textureId = this->get_world_tile(map_x, map_y) - 1;
+
+        // Calculate WallX
+        double wallX;
+        if (side == 0) {
+            wallX = ray_position_x + perp_wall_dist * ray_dir_y;
+        } else {
+            wallX = ray_position_x + perp_wall_dist * ray_dir_x;
         }
-        set_render_color(this->renderer, color);
-        SDL_RenderDrawLine(this->renderer, x, draw_start, x, draw_end);
+        wallX -= floor((wallX));
+
+        // x coord on the texture
+        int texX = int(wallX * double(TEXWIDTH));
+        if(side == 0 && ray_dir_x > 0) texX = TEXWIDTH - texX - 1;
+        if(side == 1 && ray_dir_y < 0) texX = TEXWIDTH - texX - 1;
+
+        // Get y coords on the texture
+        for (int y = draw_start; y < draw_end; y++) {
+            int d = y * 256 - height * 128 + line_height * 128;
+            int texY = ((d * TEXHEIGHT) / line_height) / 256;
+            Color pixel = this->textures[textureId][TEXHEIGHT*texY + texX];
+            if (side == 1) {
+                pixel = pixel.reduce();
+            }
+            this->screen_buffer[y][x] = pixel;
+        }
+    }
+
+    // Draw screenBuffer
+    for(int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            set_render_color(this->renderer, this->screen_buffer[y][x]);
+            SDL_RenderDrawPoint(this->renderer, x, y);
+        }
+    }
+
+    for(int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            this->screen_buffer[y][x] = Color();
+        }
     }
 }
 

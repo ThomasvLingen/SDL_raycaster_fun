@@ -9,6 +9,11 @@
 #include "player.h"
 #include "Color.hpp"
 
+#define SCREENWIDTH 640
+#define SCREENHEIGHT 480
+#define TEXWIDTH 64
+#define TEXHEIGHT 64
+
 class AlterWorldEvent;
 
 typedef std::vector<std::vector<int>> World2DVector;
@@ -18,6 +23,8 @@ class RaycasterWorld : public GameObject
 {
 public:
     RaycasterWorld(SDL_Renderer* renderer, Player* player);
+
+    void gen_textures();
 
     SDL_Renderer* renderer;
 
@@ -35,6 +42,9 @@ public:
     void alter_world(int x, int y, int width, int height, World2DVector new_part);
     int get_world_tile(int x, int y);
     Color getColor(int id);
+
+    Color screen_buffer[SCREENHEIGHT][SCREENWIDTH];
+    std::vector<Color> textures[1];
 };
 
 #endif // RAYCASTERWORLD_H
