@@ -156,12 +156,10 @@ void RaycasterWorld::draw(SDL_Surface *windowSurface)
             draw_end = height - 1;
         }
 
-        Color color;
-        color = this->getColor(this->get_world_tile(map_x, map_y));
+        Color color = this->getColor(this->get_world_tile(map_x, map_y));
         if (side == 1) {
             color = color.reduce();
         }
-        Uint8 r, g, b;
         set_render_color(this->renderer, color);
         SDL_RenderDrawLine(this->renderer, x, draw_start, x, draw_end);
     }
