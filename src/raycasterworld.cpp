@@ -223,13 +223,21 @@ void RaycasterWorld::draw(SDL_Surface *windowSurface)
         }
     }
 
-    // Draw screenBuffer
+    // This is perfect for frengine stuff
+    // Make a SDL_Texture with our own mapped pixels
+    Uint32* pixels;
+    int pitch;
+    SDL_Texture* screen_buffer = SDL_CreateTexture(this->renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, width, height);
+    SDL_LockTexture(screen_buffer, NULL, (void**)&pixels, &pitch);
+
     for(int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
-            set_render_color(this->renderer, this->screen_buffer[y][x]);
-            SDL_RenderDrawPoint(this->renderer, x, y);
+            pixels[y*width + x] = SDL_MapRGB(windowSurface->format, this->screen_buffer[y][x].r, this->screen_buffer[y][x].g, this->screen_buffer[y][x].b);
         }
     }
+
+    SDL_UnlockTexture(screen_buffer);
+    SDL_RenderCopy(this->renderer, screen_buffer, NULL, NULL);
 
     for(int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
