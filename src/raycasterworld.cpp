@@ -224,9 +224,17 @@ void RaycasterWorld::draw(SDL_Surface *windowSurface)
             int d = y * 256 - height * 128 + line_height * 128;
             int texY = ((d * TEXHEIGHT) / line_height) / 256;
             Uint32 pixel = this->textures[textureId][TEXHEIGHT*texY + texX];
-//            if (side == 1) {
-//                pixel = pixel.reduce();
-//            }
+            if (side == 1) {
+                Uint8 r, g, b;
+                SDL_GetRGB(pixel, windowSurface->format, &r, &g, &b);
+
+                r = r / 2;
+                g = g / 2;
+                b = b / 2;
+
+                pixel = SDL_MapRGB(windowSurface->format, r, g, b);
+
+            }
             this->screen_buffer[y][x] = pixel;
         }
     }
