@@ -44,7 +44,7 @@ public:
     Color getColor(int id);
 
     Uint32 screen_buffer[SCREENHEIGHT][SCREENWIDTH];
-    std::vector<Uint32> textures[5];
+    std::vector<Uint32> textures[6];
 };
 
 #endif // RAYCASTERWORLD_H

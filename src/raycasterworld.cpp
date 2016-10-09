@@ -16,15 +16,15 @@ World2DVector RaycasterWorld::world = {
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,1,0,0,0,0,1,5,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,1,0,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
-    {1,1,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
-    {1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,5,5,5,5,5,0,1},
-    {1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
-    {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
-    {1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,6,0,6,6,6,6,6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,6,0,0,0,0,6,6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,6,0,6,6,6,6,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,6,0,6,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
+    {1,6,0,0,0,0,6,0,6,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
+    {1,6,0,6,0,0,0,0,6,0,0,0,0,0,0,0,0,5,5,5,5,5,0,1},
+    {1,6,0,6,6,6,6,6,6,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
+    {1,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
+    {1,6,6,6,6,6,6,6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
@@ -68,6 +68,7 @@ void RaycasterWorld::gen_textures(SDL_PixelFormat* format)
     this->textures[2].resize(TEXWIDTH * TEXHEIGHT);
     this->textures[3].resize(TEXWIDTH * TEXHEIGHT);
     this->textures[4].resize(TEXWIDTH * TEXHEIGHT);
+    this->textures[5].resize(TEXWIDTH * TEXHEIGHT);
 
     for (int x = 0; x < TEXWIDTH; x++) {
         for (int y = 0; y < TEXHEIGHT; y++) {
@@ -80,6 +81,8 @@ void RaycasterWorld::gen_textures(SDL_PixelFormat* format)
             float scaled_x = scale_number_x * 0xFF;
             float scale_number_y = ((float)TEXHEIGHT - (float)y) / (float)TEXHEIGHT;
             float scaled_y = scale_number_y * 0xFF;
+            bool or_x = (x & 2) == 0;
+            bool or_y = (y & 2) == 0;
 
             // Texture 1
             this->textures[1][TEXWIDTH * y + x] = SDL_MapRGB(format, 0, (int)scaled_x, 0);
@@ -92,6 +95,11 @@ void RaycasterWorld::gen_textures(SDL_PixelFormat* format)
 
             // Texture 4
             this->textures[4][TEXWIDTH * y + x] = SDL_MapRGB(format, 0, (int)scaled_x, (int)scaled_y);
+
+            // Texture 5
+            if (or_x && or_y) {
+                this->textures[5][TEXWIDTH * y + x] = SDL_MapRGB(format, 0, 0xAA, 0);
+            }
         }
     }
 }
