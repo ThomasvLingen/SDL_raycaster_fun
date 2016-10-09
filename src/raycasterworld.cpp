@@ -239,6 +239,8 @@ void RaycasterWorld::draw(SDL_Surface *windowSurface)
     SDL_UnlockTexture(screen_buffer);
     SDL_RenderCopy(this->renderer, screen_buffer, NULL, NULL);
 
+    SDL_DestroyTexture(screen_buffer);
+
     for(int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
             this->screen_buffer[y][x] = 0;
