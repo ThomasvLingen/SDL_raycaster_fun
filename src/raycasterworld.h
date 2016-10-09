@@ -22,9 +22,9 @@ typedef std::vector<AlterWorldEvent*> AlterWorldEvents;
 class RaycasterWorld : public GameObject
 {
 public:
-    RaycasterWorld(SDL_Renderer* renderer, Player* player);
+    RaycasterWorld(SDL_Renderer* renderer, SDL_PixelFormat* format, Player* player);
 
-    void gen_textures();
+    void gen_textures(SDL_PixelFormat* format);
 
     SDL_Renderer* renderer;
 
@@ -43,8 +43,8 @@ public:
     int get_world_tile(int x, int y);
     Color getColor(int id);
 
-    Color screen_buffer[SCREENHEIGHT][SCREENWIDTH];
-    std::vector<Color> textures[5];
+    Uint32 screen_buffer[SCREENHEIGHT][SCREENWIDTH];
+    std::vector<Uint32> textures[5];
 };
 
 #endif // RAYCASTERWORLD_H

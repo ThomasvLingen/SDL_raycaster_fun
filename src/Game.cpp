@@ -78,7 +78,7 @@ void Game::run() {
     Player* player = new Player(this->renderer);
 
     this->addObject(player);
-    this->addObject(new RaycasterWorld(this->renderer, player));
+    this->addObject(new RaycasterWorld(this->renderer, screenSurface->format, player));
     this->fps = new FPSCounter(this->renderer);
 
     while(running) {

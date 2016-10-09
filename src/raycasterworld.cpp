@@ -28,12 +28,12 @@ World2DVector RaycasterWorld::world = {
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-RaycasterWorld::RaycasterWorld(SDL_Renderer *renderer, Player* player)
+RaycasterWorld::RaycasterWorld(SDL_Renderer *renderer, SDL_PixelFormat* format, Player* player)
 {
     this->renderer = renderer;
     this->player = player;
 
-    this->gen_textures();
+    this->gen_textures(format);
 
     this->add_alter_world_event(
         new AlterWorldEvent(
@@ -61,7 +61,7 @@ RaycasterWorld::RaycasterWorld(SDL_Renderer *renderer, Player* player)
     );
 }
 
-void RaycasterWorld::gen_textures()
+void RaycasterWorld::gen_textures(SDL_PixelFormat* format)
 {
     this->textures[0].resize(TEXWIDTH * TEXHEIGHT);
     this->textures[1].resize(TEXWIDTH * TEXHEIGHT);
@@ -73,7 +73,7 @@ void RaycasterWorld::gen_textures()
         for (int y = 0; y < TEXHEIGHT; y++) {
             // Texture 0
             if (x != y && x != TEXWIDTH - y) {
-                this->textures[0][TEXWIDTH * y + x] = Color(0xFF, 0, 0);
+                this->textures[0][TEXWIDTH * y + x] = SDL_MapRGB(format, 0xFF, 0, 0);
             }
 
             float scale_number_x = ((float)TEXWIDTH - (float)x) / (float)TEXWIDTH;
@@ -82,16 +82,16 @@ void RaycasterWorld::gen_textures()
             float scaled_y = scale_number_y * 0xFF;
 
             // Texture 1
-            this->textures[1][TEXWIDTH * y + x] = Color(0, (int)scaled_x, 0);
+            this->textures[1][TEXWIDTH * y + x] = SDL_MapRGB(format, 0, (int)scaled_x, 0);
 
             // Texture 2
-            this->textures[2][TEXWIDTH * y + x] = Color((int)scaled_x, 0, 0);
+            this->textures[2][TEXWIDTH * y + x] = SDL_MapRGB(format, (int)scaled_x, 0, 0);
 
             // Texture 3
-            this->textures[3][TEXWIDTH * y + x] = Color(0, 0, (int)scaled_x);
+            this->textures[3][TEXWIDTH * y + x] = SDL_MapRGB(format, 0, 0, (int)scaled_x);
 
             // Texture 4
-            this->textures[4][TEXWIDTH * y + x] = Color(0, (int)scaled_x, (int)scaled_y);
+            this->textures[4][TEXWIDTH * y + x] = SDL_MapRGB(format, 0, (int)scaled_x, (int)scaled_y);
         }
     }
 }
@@ -215,10 +215,10 @@ void RaycasterWorld::draw(SDL_Surface *windowSurface)
         for (int y = draw_start; y < draw_end; y++) {
             int d = y * 256 - height * 128 + line_height * 128;
             int texY = ((d * TEXHEIGHT) / line_height) / 256;
-            Color pixel = this->textures[textureId][TEXHEIGHT*texY + texX];
-            if (side == 1) {
-                pixel = pixel.reduce();
-            }
+            Uint32 pixel = this->textures[textureId][TEXHEIGHT*texY + texX];
+//            if (side == 1) {
+//                pixel = pixel.reduce();
+//            }
             this->screen_buffer[y][x] = pixel;
         }
     }
@@ -232,7 +232,7 @@ void RaycasterWorld::draw(SDL_Surface *windowSurface)
 
     for(int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
-            pixels[y*width + x] = SDL_MapRGB(windowSurface->format, this->screen_buffer[y][x].r, this->screen_buffer[y][x].g, this->screen_buffer[y][x].b);
+            pixels[y*width + x] = this->screen_buffer[y][x];
         }
     }
 
@@ -241,7 +241,7 @@ void RaycasterWorld::draw(SDL_Surface *windowSurface)
 
     for(int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
-            this->screen_buffer[y][x] = Color();
+            this->screen_buffer[y][x] = 0;
         }
     }
 }
