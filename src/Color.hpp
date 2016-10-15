@@ -13,6 +13,7 @@ public:
     Uint8 g;
     Uint8 b;
 
+    Color();
     Color(Uint8 r, Uint8 g, Uint8 b);
     Color(const Color& other);
     ~Color();

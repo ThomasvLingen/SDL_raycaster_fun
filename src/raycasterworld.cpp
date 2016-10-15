@@ -6,32 +6,34 @@ World2DVector RaycasterWorld::world = {
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1,0,0,0,0,0,1},
-    {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,0,2,0,1},
-    {1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,3,0,2,0,3,0,0,0,1,1,1,1,1,1,1},
-    {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
-    {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1,0,0,0,0,0,1},
+    {1,0,0,0,0,0,4,4,4,4,4,0,0,0,0,2,0,2,0,2,0,0,0,1,0,0,0,0,0,1},
+    {1,0,0,0,0,0,4,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1},
+    {1,0,0,0,0,0,0,0,0,0,4,0,0,0,0,2,0,5,0,2,0,0,0,1,1,1,1,1,1,1},
+    {1,0,0,0,0,0,4,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
+    {1,0,0,0,0,0,4,4,0,4,4,0,0,0,0,2,0,2,0,2,0,0,0,1,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,4,0,0,0,0,4,1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,4,0,4,4,4,4,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
-    {1,4,0,0,0,4,4,0,4,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
-    {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,5,5,5,5,5,0,1},
-    {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
-    {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
-    {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,6,0,6,6,6,6,6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,6,0,0,0,0,6,6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,6,0,6,6,6,6,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,6,0,6,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
+    {1,6,0,0,0,0,6,0,6,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
+    {1,6,0,6,0,0,0,0,6,0,0,0,0,0,0,0,0,5,5,5,5,5,0,1},
+    {1,6,0,6,6,6,6,6,6,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
+    {1,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1},
+    {1,6,6,6,6,6,6,6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-RaycasterWorld::RaycasterWorld(SDL_Renderer *renderer, Player* player)
+RaycasterWorld::RaycasterWorld(SDL_Renderer *renderer, SDL_PixelFormat* format, Player* player)
 {
     this->renderer = renderer;
     this->player = player;
+
+    this->gen_textures(format);
 
     this->add_alter_world_event(
         new AlterWorldEvent(
@@ -59,6 +61,49 @@ RaycasterWorld::RaycasterWorld(SDL_Renderer *renderer, Player* player)
     );
 }
 
+void RaycasterWorld::gen_textures(SDL_PixelFormat* format)
+{
+    this->textures[0].resize(TEXWIDTH * TEXHEIGHT);
+    this->textures[1].resize(TEXWIDTH * TEXHEIGHT);
+    this->textures[2].resize(TEXWIDTH * TEXHEIGHT);
+    this->textures[3].resize(TEXWIDTH * TEXHEIGHT);
+    this->textures[4].resize(TEXWIDTH * TEXHEIGHT);
+    this->textures[5].resize(TEXWIDTH * TEXHEIGHT);
+
+    for (int x = 0; x < TEXWIDTH; x++) {
+        for (int y = 0; y < TEXHEIGHT; y++) {
+            // Texture 0
+            if (x != y && x != TEXWIDTH - y) {
+                this->textures[0][TEXWIDTH * y + x] = SDL_MapRGB(format, 0xFF, 0, 0);
+            }
+
+            float scale_number_x = ((float)TEXWIDTH - (float)x) / (float)TEXWIDTH;
+            float scaled_x = scale_number_x * 0xFF;
+            float scale_number_y = ((float)TEXHEIGHT - (float)y) / (float)TEXHEIGHT;
+            float scaled_y = scale_number_y * 0xFF;
+            bool or_x = (x & 2) == 0;
+            bool or_y = (y & 2) == 0;
+
+            // Texture 1
+            this->textures[1][TEXWIDTH * y + x] = SDL_MapRGB(format, 0, (int)scaled_x, 0);
+
+            // Texture 2
+            this->textures[2][TEXWIDTH * y + x] = SDL_MapRGB(format, (int)scaled_x, 0, 0);
+
+            // Texture 3
+            this->textures[3][TEXWIDTH * y + x] = SDL_MapRGB(format, 0, 0, (int)scaled_x);
+
+            // Texture 4
+            this->textures[4][TEXWIDTH * y + x] = SDL_MapRGB(format, 0, (int)scaled_x, (int)scaled_y);
+
+            // Texture 5
+            if (or_x && or_y) {
+                this->textures[5][TEXWIDTH * y + x] = SDL_MapRGB(format, 0, 0xAA, 0);
+            }
+        }
+    }
+}
+
 void RaycasterWorld::handleInput(Keyboard input)
 {
 }
@@ -83,6 +128,7 @@ void RaycasterWorld::draw(SDL_Surface *windowSurface)
     int width = 640;
     int height = 480;
 
+    // Build screenbuffer
     for (int x = 0; x < width; x++)
     {
         double camera_x = 2 * x / double(width) - 1;
@@ -156,12 +202,65 @@ void RaycasterWorld::draw(SDL_Surface *windowSurface)
             draw_end = height - 1;
         }
 
-        Color color = this->getColor(this->get_world_tile(map_x, map_y));
-        if (side == 1) {
-            color = color.reduce();
+        // -1 so world map 1 maps to texture 0
+        int textureId = this->get_world_tile(map_x, map_y) - 1;
+
+        // Calculate WallX
+        double wallX;
+        if (side == 0) {
+            wallX = ray_position_y + perp_wall_dist * ray_dir_y;
+        } else {
+            wallX = ray_position_x + perp_wall_dist * ray_dir_x;
         }
-        set_render_color(this->renderer, color);
-        SDL_RenderDrawLine(this->renderer, x, draw_start, x, draw_end);
+        wallX -= floor((wallX));
+
+        // x coord on the texture
+        int texX = int(wallX * double(TEXWIDTH));
+        if(side == 0 && ray_dir_x > 0) texX = TEXWIDTH - texX - 1;
+        if(side == 1 && ray_dir_y < 0) texX = TEXWIDTH - texX - 1;
+
+        // Get y coords on the texture
+        for (int y = draw_start; y < draw_end; y++) {
+            int d = y * 256 - height * 128 + line_height * 128;
+            int texY = ((d * TEXHEIGHT) / line_height) / 256;
+            Uint32 pixel = this->textures[textureId][TEXHEIGHT*texY + texX];
+            if (side == 1) {
+                Uint8 r, g, b;
+                SDL_GetRGB(pixel, windowSurface->format, &r, &g, &b);
+
+                r = r / 2;
+                g = g / 2;
+                b = b / 2;
+
+                pixel = SDL_MapRGB(windowSurface->format, r, g, b);
+
+            }
+            this->screen_buffer[y][x] = pixel;
+        }
+    }
+
+    // This is perfect for frengine stuff
+    // Make a SDL_Texture with our own mapped pixels
+    Uint32* pixels;
+    int pitch;
+    SDL_Texture* screen_buffer = SDL_CreateTexture(this->renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, width, height);
+    SDL_LockTexture(screen_buffer, NULL, (void**)&pixels, &pitch);
+
+    for(int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            pixels[y*width + x] = this->screen_buffer[y][x];
+        }
+    }
+
+    SDL_UnlockTexture(screen_buffer);
+    SDL_RenderCopy(this->renderer, screen_buffer, NULL, NULL);
+
+    SDL_DestroyTexture(screen_buffer);
+
+    for(int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            this->screen_buffer[y][x] = 0;
+        }
     }
 }
 
