@@ -1,6 +1,7 @@
 # Files to compile
-SRC = *.cpp
 SRC_PATH = src/
+RAYCASTER_SRC = $(wildcard $(SRC_PATH)*.cpp)
+RAYCASTER_OBJS = $(RAYCASTER_SRC:.cpp=.o)
 # Compiler
 CC = g++
 
@@ -15,16 +16,27 @@ LINKER_FLAGS = -lSDL2 -lSDL2_ttf
 # Name of the resulting file
 EXEC = build/vidya
 
+SILENT = @
+
 # Compile stuff
-all : $(SRC_PATH SRC)
+%.o : %.cpp
+	@echo CC $<
+	$(SILENT) $(CC) -c $< $(COMPILER_FLAGS) -o $@
+
+$(EXEC) : $(RAYCASTER_OBJS)
+	@echo
 	mkdir -p build
-	@echo "Compiling vidya"
-	$(CC) $(SRC_PATH)$(SRC) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(EXEC)
-	@echo "\nMoving resources to bin"
+	@echo LD $@
+	$(SILENT) $(CC) $(COMPILER_FLAGS) $(RAYCASTER_OBJS) $(LINKER_FLAGS) -o $(EXEC)
+	@echo
+	@echo "Moving resources to bin"
 	cp -r res build
 	cp SDL2.dll build
+	@echo
 
-run : all
+all : $(EXEC)
+
+run : $(EXEC)
 	$(EXEC)
 
 # Kind cleaning lady
